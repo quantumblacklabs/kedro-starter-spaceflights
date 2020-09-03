@@ -20,8 +20,17 @@ Install the required dependencies:
 kedro install
 ```
 
-Now you can run the project with:
+Now you can run the project:
 
 ```bash
 kedro run
 ```
+
+To visualise the default pipeline, run:
+```bash
+kedro viz
+```
+
+This will open the default browser and display the following pipeline visualisation:
+
+![](./images/spaceflights_pipeline.png)
