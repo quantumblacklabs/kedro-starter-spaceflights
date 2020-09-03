@@ -11,7 +11,7 @@ To use this project, create a new Kedro project using the commands below. To mak
 ```bash
 pip install kedro==0.16.4
 kedro new --starter git+https://github.com/quantumblacklabs/kedro-starter-spaceflights.git
-cd <my-project-name>  # cd into newly created prject directory
+cd <my-project-name>  # cd into newly created project directory
 ```
 
 Install the required dependencies:
