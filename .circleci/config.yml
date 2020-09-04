@@ -56,11 +56,10 @@ jobs:
       - setup_requirements:
           python_version: "python3.8"
       - run:
-          command:
-            name: Lint the project
-            run: |
-              isort -rc .
-              black .
+          name: Lint the project
+          command: |
+            isort -rc .
+            black .
   e2e_38:
     executor: py38
     steps:
