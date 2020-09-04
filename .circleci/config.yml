@@ -102,3 +102,18 @@ workflows:
             - e2e_38
             - e2e_37
             - e2e_36
+
+  nightly_build_run:
+    triggers:
+      - schedule:
+          cron: "30 2 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - lint
+      - security_scan
+      - e2e_38
+      - e2e_37
+      - e2e_36
