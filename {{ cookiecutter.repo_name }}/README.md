@@ -6,10 +6,10 @@ This is a tutorial project, which was generated using `Kedro {{ cookiecutter.ked
 
 The tutorial works through the steps necessary to create this project. To learn the most about Kedro, we recommend that you start with a blank template as the tutorial describes, and follow through all the working. However, if you prefer to read swiftly through the documentation and get to work on the code, you may want to run this example because the steps have been done for you.
 
-To use this project, use `git clone` to clone it. You don’t need to create a new Kedro project. To make sure you have the required dependencies, run in your virtual environment (see [the documentation](https://kedro.readthedocs.io/en/stable/02_getting_started/01_prerequisites.html#python-virtual-environments) for how to set up your virtual environment):
+Before running this project, make sure you have the required dependencies, run in your virtual environment (see [the documentation](https://kedro.readthedocs.io/en/stable/02_getting_started/01_prerequisites.html#python-virtual-environments) for how to set up your virtual environment):
 
 ```bash
-pip install kedro==0.16.4
+pip install kedro=={{ cookiecutter.kedro_version }}
 kedro install
 ```
 
