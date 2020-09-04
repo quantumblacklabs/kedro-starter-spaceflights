@@ -38,7 +38,7 @@ commands:
     steps:
       - run:
           name: Run end to end tests
-          command: behave features
+          command: behave
 
 jobs:
   security_scan:
@@ -78,6 +78,13 @@ jobs:
       - setup_requirements:
           python_version: "python3.6"
       - e2e
+  all_circleci_checks_succeeded:
+    docker:
+      - image: circleci/python # any light-weight image
+    steps:
+      - run:
+          name: Success!
+          command: echo "All checks passed"
 
 workflows:
   version: 2
@@ -88,3 +95,11 @@ workflows:
       - e2e_38
       - e2e_37
       - e2e_36
+      - all_circleci_checks_succeeded:
+          requires:
+            - lint
+            - security_scan
+            - e2e_tests_36
+            - e2e_38
+            - e2e_37
+            - e2e_36
