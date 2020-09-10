@@ -1,0 +1,119 @@
+version: 2.1
+
+executors:
+  py38:
+    docker:
+      - image: circleci/python:3.8
+  py37:
+    docker:
+      - image: circleci/python:3.7
+  py36:
+    docker:
+      - image: circleci/python:3.6
+
+commands:
+  setup_requirements:
+    description: Setup requirements
+    parameters:
+      python_version:
+        type: string
+    steps:
+      - checkout
+      - run:
+          name: Change the owner to circleci
+          command: |
+            sudo chown -R circleci:circleci /usr/local/bin
+            sudo chown -R circleci:circleci /usr/local/lib/<< parameters.python_version >>/site-packages
+      - restore_cache:
+          key: deps9-<< parameters.python_version >>-{{ checksum "test_requirements.txt" }}
+      - run:
+          name: Install dependencies
+          command: sudo pip install -U -r test_requirements.txt
+      - save_cache: # cache Python dependencies using checksum of requirements file as the cache-key
+          key: deps9-<< parameters.python_version >>-{{ checksum "test_requirements.txt" }}
+          paths:
+            - "~/.cache/pip"
+  e2e:
+    description: Run end to end tests
+    steps:
+      - run:
+          name: Run end to end tests
+          command: behave
+
+jobs:
+  security_scan:
+    executor: py38
+    steps:
+      - setup_requirements:
+          python_version: "python3.8"
+      - run:
+          name: Run security scan
+          command: bandit -ll -r .
+  lint:
+    executor: py38
+    description: Lint the project
+    steps:
+      - setup_requirements:
+          python_version: "python3.8"
+      - run:
+          name: Lint the project
+          command: |
+            isort -rc .
+            black .
+  e2e_38:
+    executor: py38
+    steps:
+      - setup_requirements:
+          python_version: "python3.8"
+      - e2e
+  e2e_37:
+    executor: py37
+    steps:
+      - setup_requirements:
+          python_version: "python3.7"
+      - e2e
+  e2e_36:
+    executor: py36
+    steps:
+      - setup_requirements:
+          python_version: "python3.6"
+      - e2e
+  all_circleci_checks_succeeded:
+    docker:
+      - image: circleci/python # any light-weight image
+    steps:
+      - run:
+          name: Success!
+          command: echo "All checks passed"
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - lint
+      - security_scan
+      - e2e_38
+      - e2e_37
+      - e2e_36
+      - all_circleci_checks_succeeded:
+          requires:
+            - lint
+            - security_scan
+            - e2e_38
+            - e2e_37
+            - e2e_36
+
+  nightly_build_run:
+    triggers:
+      - schedule:
+          cron: "30 2 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - lint
+      - security_scan
+      - e2e_38
+      - e2e_37
+      - e2e_36
