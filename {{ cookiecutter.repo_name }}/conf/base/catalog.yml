@@ -52,7 +52,7 @@ reviews:
   layer: raw
 
 shuttles:
-  type: pandas.ExcelLocalDataSet
+  type: pandas.ExcelDataSet
   filepath: data/01_raw/shuttles.xlsx
   layer: raw
 
