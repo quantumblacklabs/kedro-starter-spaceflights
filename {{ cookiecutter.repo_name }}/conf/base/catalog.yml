@@ -42,28 +42,37 @@
 companies:
   type: pandas.CSVDataSet
   filepath: data/01_raw/companies.csv
+  # more about layers in the Data Engineering Convention:
+  # https://kedro.readthedocs.io/en/stable/03_tutorial/06_visualise_pipeline.html#interact-with-data-engineering-convention
+  layer: raw
 
 reviews:
   type: pandas.CSVDataSet
   filepath: data/01_raw/reviews.csv
+  layer: raw
 
 shuttles:
   type: {{ cookiecutter.python_package }}.io.xls_local.ExcelLocalDataSet
   filepath: data/01_raw/shuttles.xlsx
+  layer: raw
 
 preprocessed_companies:
   type: pandas.CSVDataSet
   filepath: data/02_intermediate/preprocessed_companies.csv
+  layer: intermediate
 
 preprocessed_shuttles:
   type: pandas.CSVDataSet
   filepath: data/02_intermediate/preprocessed_shuttles.csv
+  layer: intermediate
 
 master_table:
   type: pandas.CSVDataSet
   filepath: data/03_primary/master_table.csv
+  layer: primary
 
 regressor:
   type: pickle.PickleDataSet
   filepath: data/06_models/regressor.pickle
   versioned: true
+  layer: models

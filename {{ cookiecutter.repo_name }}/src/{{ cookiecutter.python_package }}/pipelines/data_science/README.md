@@ -5,9 +5,9 @@
 ## Overview
 
 This modular pipeline:
-1. splits the master table into train and test subsets (`split_data` node)
-2. trains a simple linear regression model (`train_model` node)
-3. evaluates the accuracy of a trained model from (2) on a test set (`evaluate_model` node)
+1. Splits the master table into train and test subsets (`split_data` node)
+2. Trains a simple linear regression model (`train_model` node)
+3. Evaluates the accuracy of a trained model from (2) on a test set (`evaluate_model` node)
 
 
 ## Pipeline inputs
