@@ -31,7 +31,6 @@
 
 from .pipelines.data_science import pipeline as ds
 from .pipelines.data_engineering import pipeline as de
-from .pipelines.data_engineering.nodes import log_running_time
 
 
 def create_pipelines(**kwargs):
@@ -44,11 +43,8 @@ def create_pipelines(**kwargs):
         A mapping from a pipeline name to a ``Pipeline`` object.
 
     """
-    # Nodes in this pipeline are decorated with 'log_running_time' individually
     data_engineering_pipeline = de.create_pipeline()
-    # Alternatively, you can decorate all nodes in the given pipeline
-    # by calling `Pipeline.decorate()` method
-    data_science_pipeline = ds.create_pipeline().decorate(log_running_time)
+    data_science_pipeline = ds.create_pipeline()
 
     return {
         "de": data_engineering_pipeline,
