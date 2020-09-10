@@ -52,7 +52,7 @@ reviews:
   layer: raw
 
 shuttles:
-  type: {{ cookiecutter.python_package }}.io.xls_local.ExcelLocalDataSet
+  type: pandas.ExcelLocalDataSet
   filepath: data/01_raw/shuttles.xlsx
   layer: raw
 
