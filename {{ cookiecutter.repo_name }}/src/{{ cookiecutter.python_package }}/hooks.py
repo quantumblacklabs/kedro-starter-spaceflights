@@ -52,9 +52,9 @@ class ProjectHooks:
         data_science_pipeline = ds.create_pipeline()
 
         return {
+            "__default__": data_engineering_pipeline + data_science_pipeline,
             "de": data_engineering_pipeline,
             "ds": data_science_pipeline,
-            "__default__": data_engineering_pipeline + data_science_pipeline,
         }
 
     @hook_impl
