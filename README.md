@@ -33,4 +33,4 @@ kedro viz
 
 This will open the default browser and display the following pipeline visualisation:
 
-![](./images/pipeline_visualisation.png)
+![](./images/pipeline_visualisation_with_layers.png)
