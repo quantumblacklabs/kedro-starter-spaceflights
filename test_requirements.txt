@@ -1,4 +1,6 @@
-kedro
+# TODO: Switch to a released Kedro version before merging to master
+# kedro~=0.17.0
+git+https://github.com/quantumblacklabs/kedro.git@develop
 bandit>=1.6.2, <2.0
 behave>=1.2.6, <2.0
 black>=19.10b0, <20.0
