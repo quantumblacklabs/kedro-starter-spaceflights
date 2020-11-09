@@ -10,6 +10,6 @@ kedro-viz~=3.1
 nbstripout==0.3.3
 pytest-cov~=2.5
 pytest-mock>=1.7.1, <2.0
-pytest~=5.0
+pytest~=6.1.2
 wheel==0.32.2
 scikit-learn==0.23.2
