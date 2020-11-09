@@ -29,7 +29,7 @@
 """Application entry point."""
 from pathlib import Path
 
-from kedro.context import KedroContext, load_context
+from kedro.framework.context import KedroContext, load_package_context
 
 
 class ProjectContext(KedroContext):
@@ -39,9 +39,11 @@ class ProjectContext(KedroContext):
 
 
 def run_package():
-    # entry point for running pip-install projects
-    # using `<project_package>` command
-    project_context = load_context(Path.cwd())
+    # Entry point for running a Kedro project packaged with `kedro package`
+    # using `python -m <project_package>.run` command.
+    project_context = load_package_context(
+        project_path=Path.cwd(), package_name=Path(__file__).resolve().parent.name
+    )
     project_context.run()
 
 
