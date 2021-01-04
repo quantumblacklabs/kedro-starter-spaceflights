@@ -216,7 +216,6 @@ def run(
     runner_class = load_obj(runner, "kedro.runner")
 
     tag = _get_values_as_tuple(tag) if tag else tag
-    node_names = _get_values_as_tuple(node_names) if node_names else node_names
 
     context = load_context(Path.cwd(), env=env, extra_params=params)
     context.run(
