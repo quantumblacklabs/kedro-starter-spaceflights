@@ -1,4 +1,4 @@
-kedro
+kedro==0.16.6
 bandit>=1.6.2, <2.0
 behave>=1.2.6, <2.0
 black>=19.10b0, <20.0
